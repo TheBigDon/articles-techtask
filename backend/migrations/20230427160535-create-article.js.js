@@ -1,7 +1,9 @@
-module.exports = (sequelize, Sequelize) => {
-  const Article = sequelize.define(
-    "article",
-    {
+"use strict";
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    return queryInterface.createTable("articles", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -23,16 +25,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    },
-    {
-      timestamps: false,
-    }
-  );
-  Article.associate = function (models) {
-    Article.hasMany(models.comment, {
-      onDelete: "CASCADE",
     });
-  };
+  },
 
-  return Article;
+  async down(queryInterface, Sequelize) {
+    return queryInterface.dropTable("articles");
+  },
 };
