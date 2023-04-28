@@ -16,10 +16,23 @@ class ArticleController {
   async getAllArticles(req, res) {
     try {
       const articles = await db.query(
-        "SELECT id, title, content, date_creation, date_modification FROM articles"
+        "SELECT title, content, date_creation, date_modification FROM articles"
       );
 
       res.status(200).json(articles.rows);
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+  async getArticle(req, res) {
+    try {
+      const id = req.params.id;
+      const article = await db.query(
+        `SELECT title, content, date_creation, date_modification FROM articles WHERE id = $1`,
+        [id]
+      );
+
+      res.status(200).json(article.rows[0]);
     } catch (err) {
       res.status(404).json({ message: err.message });
     }
