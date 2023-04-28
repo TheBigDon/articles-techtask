@@ -37,5 +37,17 @@ class ArticleController {
       res.status(404).json({ message: err.message });
     }
   }
+  async deleteArticle(req, res) {
+    try {
+      const id = req.params.id;
+      const article = await db.query(`DELETE FROM articles WHERE id = $1`, [
+        id,
+      ]);
+
+      res.status(200).json(article.rows[0]);
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
 }
 module.exports = new ArticleController();
