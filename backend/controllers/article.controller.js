@@ -10,6 +10,17 @@ class ArticleController {
 
       res.status(200).json(newArticle.rows[0]);
     } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
+  async getAllArticles(req, res) {
+    try {
+      const articles = await db.query(
+        "SELECT id, title, content, date_creation, date_modification FROM articles"
+      );
+
+      res.status(200).json(articles.rows);
+    } catch (err) {
       res.status(404).json({ message: err.message });
     }
   }
