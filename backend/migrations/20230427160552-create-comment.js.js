@@ -6,6 +6,7 @@ module.exports = {
     return queryInterface.createTable("comments", {
       id: {
         type: Sequelize.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },

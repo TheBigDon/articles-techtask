@@ -5,7 +5,6 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert("articles", [
       {
-        id: 1,
         title:
           "Как Джеймс Ганн помог Стражам Галактики стать популярными, а они помогли ему сохранить карьеру",
         content:
@@ -14,7 +13,6 @@ module.exports = {
         date_modification: new Date(),
       },
       {
-        id: 2,
         title:
           "«Самый нетипичный фильм Гая Ричи»: что пишут критики о «Переводчике»",
         content:
@@ -23,7 +21,6 @@ module.exports = {
         date_modification: new Date(),
       },
       {
-        id: 3,
         title:
           "«Межевой рыцарь»: что известно о новом сериале по «Игре престолов»",
         content:
@@ -32,7 +29,6 @@ module.exports = {
         date_modification: new Date(),
       },
       {
-        id: 4,
         title:
           "Сериалы по Гарри Поттеру и «Игре престолов»: что анонсировали на презентации Warner Bros. Discovery",
         content:

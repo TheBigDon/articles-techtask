@@ -1,13 +1,13 @@
 const express = require("express");
-const app = express();
-const port = 3000;
+const articleRouter = require("./routes/article.routes");
 
-const db = require("./models");
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
-db.sequelize.sync({ force: false }).then(function () {
-  app.listen(port, function () {
-    console.log("Server is running");
-  });
+const PORT = 8080;
+
+const app = express();
+
+app.use(express.json());
+app.use("/blog", articleRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
