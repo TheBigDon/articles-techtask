@@ -6,6 +6,7 @@ class CommentController {
     try {
       const { content } = req.body;
       const idArtcile = req.params.id;
+
       const newComment = await Comment.create(
         {
           content: content,
@@ -47,6 +48,7 @@ class CommentController {
   async getAllComments(req, res) {
     try {
       const articleId = req.params.id;
+
       const comments = await Comment.findAll({
         where: {
           articleId: articleId,
@@ -54,6 +56,29 @@ class CommentController {
       });
 
       res.status(200).json(comments);
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+
+  async updateComment(req, res) {
+    try {
+      const idArticle = req.params.id;
+      const idComment = req.params.comment_id;
+      const { content } = req.body;
+
+      const comment = await Comment.update(
+        {
+          content: content,
+          date_modification: new Date(),
+        },
+        {
+          where: {
+            id: idComment,
+            articleId: idArticle,
+          },
+        }
+      );
     } catch (err) {
       res.status(404).json({ message: err.message });
     }

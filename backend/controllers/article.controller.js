@@ -5,6 +5,7 @@ class ArticleController {
   async createArticle(req, res) {
     try {
       const { title, content } = req.body;
+
       const newArticle = await Article.create({
         title: title,
         content: content,
@@ -20,6 +21,7 @@ class ArticleController {
   async getAllArticles(req, res) {
     try {
       const articles = await Article.findAll();
+
       res.status(200).json(articles);
     } catch (err) {
       res.status(404).json({ message: err.message });
@@ -28,6 +30,7 @@ class ArticleController {
   async getArticle(req, res) {
     try {
       const id = req.params.id;
+
       const article = await Article.findOne({
         where: {
           id: id,
@@ -42,6 +45,7 @@ class ArticleController {
   async deleteArticle(req, res) {
     try {
       const id = req.params.id;
+
       const article = await Article.destroy({
         where: {
           id: id,
@@ -57,6 +61,7 @@ class ArticleController {
     try {
       const id = req.params.id;
       const { title, content } = req.body;
+
       const article = await Article.update(
         {
           title: title,
