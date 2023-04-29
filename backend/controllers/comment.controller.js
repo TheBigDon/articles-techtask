@@ -79,6 +79,26 @@ class CommentController {
           },
         }
       );
+
+      res.status(200).json(comment);
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+
+  async deleteComment(req, res) {
+    try {
+      const idArticle = req.params.id;
+      const idComment = req.params.comment_id;
+
+      const comment = await Comment.destroy({
+        where: {
+          id: idComment,
+          articleId: idArticle,
+        },
+      });
+
+      res.status(200).json(comment);
     } catch (err) {
       res.status(404).json({ message: err.message });
     }

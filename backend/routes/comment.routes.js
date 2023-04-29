@@ -9,9 +9,9 @@ router.patch(
   "/article/:id/comment/:comment_id/",
   commentController.updateComment
 );
-// router.delete(
-//   "/article/:id/comment/:comment_id/",
-//   commentController.deleteComment
-// );
+router.delete(
+  "/article/:id/comment/:comment_id/",
+  commentController.deleteComment
+);
 
 module.exports = router;
