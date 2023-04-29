@@ -4,12 +4,12 @@ const Article = db.article;
 class ArticleController {
   async createArticle(req, res) {
     try {
-      const { title, content, date_creation, date_modification } = req.body;
+      const { title, content } = req.body;
       const newArticle = await Article.create({
         title: title,
         content: content,
-        date_creation: date_creation,
-        date_modification: date_modification,
+        date_creation: new Date(),
+        date_modification: new Date(),
       });
 
       res.status(200).json(newArticle);
@@ -76,4 +76,5 @@ class ArticleController {
     }
   }
 }
+
 module.exports = new ArticleController();
