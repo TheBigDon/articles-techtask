@@ -43,6 +43,21 @@ class CommentController {
       res.status(404).json({ message: err.message });
     }
   }
+
+  async getAllComments(req, res) {
+    try {
+      const articleId = req.params.id;
+      const comments = await Comment.findAll({
+        where: {
+          articleId: articleId,
+        },
+      });
+
+      res.status(200).json(comments);
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
 }
 
 module.exports = new CommentController();
