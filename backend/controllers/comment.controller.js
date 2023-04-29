@@ -12,11 +12,11 @@ class CommentController {
           content: content,
           date_creation: new Date(),
           date_modification: new Date(),
-          articleId: id,
+          articleId: idArtcile,
         },
         {
           where: {
-            articleId: id,
+            articleId: idArtcile,
           },
         }
       );
