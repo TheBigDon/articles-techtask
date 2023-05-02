@@ -1,9 +1,9 @@
 <script>
-import CreateEditArticleForm from "../components/articles/CreateEditArticleForm.vue";
+import FullArticle from "../components/articles/FullArticle.vue";
 import { GET_FULL_ARTICLE } from "../store/actions/articles";
 
 export default {
-  components: { CreateEditArticleForm },
+  components: { FullArticle },
   data() {
     return {
       article: null,
@@ -18,6 +18,4 @@ export default {
 };
 </script>
 
-<template>
-  <CreateEditArticleForm v-if="article" :article="article" />
-</template>
+<template><FullArticle v-if="article" :article="article" /></template>

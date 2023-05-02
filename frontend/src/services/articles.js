@@ -8,8 +8,25 @@ export async function getArtciles() {
 }
 
 export async function createArticle(articleData) {
-  return axios.post("article", {
+  const res = await axios.post("article", {
     title: articleData.title,
     content: articleData.content,
   });
+
+  return res.data;
+}
+
+export async function getArtcile(articleId) {
+  const res = await axios.get(`article/${articleId}`);
+
+  return res.data;
+}
+
+export async function updateArticle(articleId, articleData) {
+  const res = await axios.patch(`article/${articleId}`, {
+    title: articleData.title,
+    content: articleData.content,
+  });
+
+  return res.data;
 }

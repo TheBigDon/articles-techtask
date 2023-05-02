@@ -1,8 +1,9 @@
 <script>
-import { CREATE_ARTICLE } from "../../store/actions/articles";
+import { CREATE_ARTICLE, UPDATE_ARTICLE } from "../../store/actions/articles";
 export default {
   data() {
     return {
+      editing: false,
       valid: false,
       title: "",
       content: "",
@@ -27,12 +28,36 @@ export default {
     };
   },
   methods: {
-    articleSubmitHandler() {
-      this.$store.dispatch(CREATE_ARTICLE, {
-        title: this.title,
-        content: this.content,
-      });
+    async articleSubmitHandler() {
+      if (!this.editing) {
+        await this.$store.dispatch(CREATE_ARTICLE, {
+          title: this.title,
+          content: this.content,
+        });
+
+        this.title = "";
+        this.content = "";
+      } else {
+        await this.$store.dispatch(UPDATE_ARTICLE, {
+          id: this.article.id,
+          title: this.title,
+          content: this.content,
+        });
+      }
     },
+  },
+  props: {
+    article: {
+      type: Object,
+      default: null,
+    },
+  },
+  mounted() {
+    if (this.article) {
+      this.title = this.article.title;
+      this.content = this.article.content;
+      this.editing = true;
+    }
   },
 };
 </script>
@@ -63,7 +88,9 @@ export default {
       </v-row>
       <v-row>
         <v-col>
-          <v-btn type="submit" width="200px" class="mt-2">Создать</v-btn>
+          <v-btn type="submit" width="200px" class="mt-2">
+            {{ editing ? "Редактировать" : "Создать" }}
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>

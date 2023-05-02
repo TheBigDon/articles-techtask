@@ -9,6 +9,10 @@ const routes = [
     path: "/:articleId/edit",
     component: () => import("../pages/EditArticlePage.vue"),
   },
+  {
+    path: "/:articleId",
+    component: () => import("../pages/FullArticlePage.vue"),
+  },
 ];
 
 const router = createRouter({
