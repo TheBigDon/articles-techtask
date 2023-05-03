@@ -18,4 +18,10 @@ export default {
 };
 </script>
 
-<template><FullArticle v-if="article" :article="article" /></template>
+<template>
+  <div class="pa-6">
+    <router-link to="/" style="display: block" class="text-decoration-none"
+      >Назад</router-link
+    ><FullArticle v-if="article" :article="article" />
+  </div>
+</template>

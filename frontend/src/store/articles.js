@@ -4,8 +4,15 @@ import {
   GET_FULL_ARTICLE,
   UPDATE_ARTICLE,
   UPDATE_ARTICLE_LOCALLY,
+  GET_ARTICLES,
+  SET_ARTICLES,
 } from "./actions/articles";
-import { createArticle, getArtcile, updateArticle } from "../services/articles";
+import {
+  createArticle,
+  getArticle,
+  updateArticle,
+  getArticles,
+} from "../services/articles";
 
 export default {
   state: {
@@ -18,9 +25,14 @@ export default {
       commit(ADD_ARTICLE, article);
     },
     [GET_FULL_ARTICLE]: async (context, id) => {
-      const article = await getArtcile(id);
+      const article = await getArticle(id);
 
       return article;
+    },
+    [GET_ARTICLES]: async ({ commit }) => {
+      const articles = await getArticles();
+
+      commit(SET_ARTICLES, articles);
     },
     [UPDATE_ARTICLE]: async ({ commit }, data) => {
       const article = await updateArticle(data.id, {
@@ -38,6 +50,9 @@ export default {
     [UPDATE_ARTICLE_LOCALLY]: (state, article) => {
       const index = state.articles.findIndex((item) => item.id === article.id);
       state.articles[index] = article;
+    },
+    [SET_ARTICLES]: (state, articles) => {
+      state.articles = articles;
     },
   },
 };

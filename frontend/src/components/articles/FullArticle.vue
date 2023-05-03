@@ -10,7 +10,25 @@ export default {
 
 <template>
   <article class="d-flex flex-column">
-    <h1 class="text-h1 mb-6">{{ article.title }}</h1>
-    <v-card :text="article.content"></v-card>
+    <h1
+      class="text-h1 mb-6"
+      style="font-size: 36px !important; line-height: 3rem"
+    >
+      {{ article.title }}
+    </h1>
+    <v-card :text="article.content" style="font-size: 24px"></v-card>
+    <router-link :to="`/${article.id}/edit`" class="text-decoration-none">
+      <v-btn size="small" variant="text" style="width: fit-content">
+        Редактировать
+      </v-btn></router-link
+    >
+    <v-btn
+      size="small"
+      variant="text"
+      class="text-red-lighten-1"
+      style="width: fit-content"
+    >
+      Удалить
+    </v-btn>
   </article>
 </template>
