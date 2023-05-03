@@ -10,11 +10,15 @@ export default {
 
 <template>
   <v-container class="d-flex flex-column">
-    <v-row v-for="comment in comments" :key="comment.id">
-      <v-col offset="3" cols="6">
-        <v-card class="d-flex justify-between">
-          <span>{{ comment.content }}</span>
-          <span>{{ comment.date_creation }}</span>
+    <v-row v-for="comment in comments" :key="comment.id" class="w-full">
+      <v-col class="offset-md3 w-full" offset="3" cols="12">
+        <v-card>
+          <div class="d-flex justify-space-between pa-3">
+            <span>{{ comment.content }}</span>
+            <span>{{
+              new Date(comment.date_creation).toLocaleString("ru-RU")
+            }}</span>
+          </div>
         </v-card>
       </v-col>
     </v-row>
