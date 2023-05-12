@@ -29,3 +29,9 @@ export async function getArticles() {
 
   return res.data;
 }
+
+export async function deleteArticle(articleId) {
+  const res = await axios.delete(`article/${articleId}`);
+
+  return res.data;
+}

@@ -6,12 +6,15 @@ import {
   UPDATE_ARTICLE_LOCALLY,
   GET_ARTICLES,
   SET_ARTICLES,
+  DELETE_ARTICLE,
+  DELETE_ARTICLE_LOCALLY,
 } from "./actions/articles";
 import {
   createArticle,
   getArticle,
   updateArticle,
   getArticles,
+  deleteArticle,
 } from "../services/articles";
 
 export default {
@@ -42,6 +45,11 @@ export default {
 
       commit(UPDATE_ARTICLE_LOCALLY, article);
     },
+    [DELETE_ARTICLE]: async ({ commit }, data) => {
+      const article = await deleteArticle(data.id);
+
+      commit(DELETE_ARTICLE_LOCALLY, article);
+    },
   },
   mutations: {
     [ADD_ARTICLE]: (state, article) => {
@@ -53,6 +61,10 @@ export default {
     },
     [SET_ARTICLES]: (state, articles) => {
       state.articles = articles;
+    },
+    [DELETE_ARTICLE_LOCALLY]: (state, article) => {
+      const index = state.articles.findIndex((item) => item.id === article.id);
+      state.articles.splice(index, 1);
     },
   },
 };

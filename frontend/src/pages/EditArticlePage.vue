@@ -19,5 +19,8 @@ export default {
 </script>
 
 <template>
+  <router-link to="/" style="display: block" class="text-decoration-none">
+    Назад
+  </router-link>
   <CreateEditArticleForm v-if="article" :article="article" />
 </template>

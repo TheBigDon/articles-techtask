@@ -15,9 +15,9 @@ export default {
         <v-card>
           <div class="d-flex justify-space-between pa-3">
             <span>{{ comment.content }}</span>
-            <span>{{
-              new Date(comment.date_creation).toLocaleString("ru-RU")
-            }}</span>
+            <span>
+              {{ new Date(comment.date_creation).toLocaleString("ru-RU") }}
+            </span>
           </div>
         </v-card>
       </v-col>
