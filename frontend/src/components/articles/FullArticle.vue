@@ -2,16 +2,16 @@
 import { DELETE_ARTICLE } from "../../store/actions/articles";
 
 export default {
-  methods: {
-    async deleteArticle() {
-      await this.$store.dispatch(DELETE_ARTICLE, {
-        id: this.article.id,
-      });
-    },
-  },
   props: {
     article: {
       type: Object,
+    },
+  },
+  methods: {
+    async deleteArticleHandler() {
+      await this.$store.dispatch(DELETE_ARTICLE, {
+        id: this.article.id,
+      });
     },
   },
 };
@@ -36,7 +36,7 @@ export default {
       variant="text"
       class="text-red-lighten-1"
       style="width: fit-content"
-      @click="deleteArticle"
+      @click="deleteArticleHandler"
     >
       Удалить
     </v-btn>

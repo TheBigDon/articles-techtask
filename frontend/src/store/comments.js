@@ -1,7 +1,13 @@
-import { createComment, getComments } from "../services/comments";
+import {
+  createComment,
+  deleteComment,
+  getComments,
+} from "../services/comments";
 import {
   ADD_COMMENT,
   CREATE_COMMENT,
+  DELETE_COMMENT,
+  DELETE_COMMENT_LOCALLY,
   GET_COMMENTS,
   SET_COMMENTS,
 } from "./actions/comments";
@@ -12,7 +18,7 @@ export default {
   },
   actions: {
     [CREATE_COMMENT]: async ({ commit }, data) => {
-      const comment = await createComment(data.articleId, data.content);
+      const comment = await createComment(data.content, data.articleId);
 
       commit(ADD_COMMENT, comment);
     },
@@ -21,6 +27,11 @@ export default {
 
       commit(SET_COMMENTS, comments);
     },
+    [DELETE_COMMENT]: async ({ commit }, data) => {
+      const comment = await deleteComment(data.articleId, data.id);
+
+      commit(DELETE_COMMENT_LOCALLY, comment);
+    },
   },
   mutations: {
     [ADD_COMMENT]: (state, comment) => {
@@ -28,6 +39,10 @@ export default {
     },
     [SET_COMMENTS]: (state, comments) => {
       state.comments = comments;
+    },
+    [DELETE_COMMENT_LOCALLY]: (state, comment) => {
+      const index = state.comments.findIndex((item) => item.id === comment.id);
+      state.comments.splice(index, 1);
     },
   },
 };

@@ -18,10 +18,10 @@ export default {
     };
   },
   methods: {
-    async commentSubmitHandler() {
+    async createComment() {
       await this.$store.dispatch(CREATE_COMMENT, {
-        articleId: this.$route.params.articleId,
         content: this.content,
+        articleId: this.$route.params.articleId,
       });
 
       this.content = "";
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <template>
-  <v-form v-model="valid" @submit.prevent="commentSubmitHandler">
+  <v-form v-model="valid" @submit.prevent="createComment">
     <v-container>
       <v-row>
         <v-col cols="12" md="8">

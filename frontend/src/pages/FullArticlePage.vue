@@ -1,11 +1,12 @@
 <script>
 import FullArticle from "../components/articles/FullArticle.vue";
 import CommentList from "../components/comments/CommentList.vue";
+import CreateCommentForm from "../components/comments/CreateCommentForm.vue";
 import { GET_FULL_ARTICLE } from "../store/actions/articles";
 import { GET_COMMENTS } from "../store/actions/comments";
 
 export default {
-  components: { FullArticle, CommentList },
+  components: { FullArticle, CommentList, CreateCommentForm },
   data() {
     return {
       article: null,
@@ -34,5 +35,6 @@ export default {
       >Назад</router-link
     ><FullArticle v-if="article" :article="article" />
     <CommentList v-if="comments.length" :comments="comments" />
+    <CreateCommentForm />
   </div>
 </template>

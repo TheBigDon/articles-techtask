@@ -1,8 +1,18 @@
 <script>
+import { DELETE_COMMENT } from "../../store/actions/comments";
+
 export default {
   props: {
     comments: {
       type: Array,
+    },
+  },
+  methods: {
+    async deleteCommentHandler(id) {
+      await this.$store.dispatch(DELETE_COMMENT, {
+        articleId: this.$route.params.articleId,
+        id: id,
+      });
     },
   },
 };
@@ -19,6 +29,15 @@ export default {
               {{ new Date(comment.date_creation).toLocaleString("ru-RU") }}
             </span>
           </div>
+          <v-btn
+            size="small"
+            variant="text"
+            class="text-red-lighten-1"
+            style="width: fit-content"
+            @click="deleteCommentHandler(comment.id)"
+          >
+            Удалить
+          </v-btn>
         </v-card>
       </v-col>
     </v-row>
