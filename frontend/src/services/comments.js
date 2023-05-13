@@ -2,7 +2,7 @@ import axios from "../plugins/axios";
 
 export async function createComment(commentData, articleId) {
   const res = await axios.post(`/article/${articleId}/comment/`, {
-    content: commentData.content,
+    content: commentData,
     articleId: articleId,
   });
 
