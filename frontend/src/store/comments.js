@@ -2,6 +2,7 @@ import {
   createComment,
   deleteComment,
   getComments,
+  updateComment,
 } from "../services/comments";
 import {
   ADD_COMMENT,
@@ -10,6 +11,8 @@ import {
   DELETE_COMMENT_LOCALLY,
   GET_COMMENTS,
   SET_COMMENTS,
+  UPDATE_COMMENT,
+  UPDATE_COMMENT_LOCALLY,
 } from "./actions/comments";
 
 export default {
@@ -32,6 +35,15 @@ export default {
 
       commit(DELETE_COMMENT_LOCALLY, comment);
     },
+    [UPDATE_COMMENT]: async ({ commit }, data) => {
+      const comment = await updateComment(
+        data.articleId,
+        data.id,
+        data.content
+      );
+
+      commit(UPDATE_COMMENT_LOCALLY, comment);
+    },
   },
   mutations: {
     [ADD_COMMENT]: (state, comment) => {
@@ -43,6 +55,10 @@ export default {
     [DELETE_COMMENT_LOCALLY]: (state, comment) => {
       const index = state.comments.findIndex((item) => item.id === comment.id);
       state.comments.splice(index, 1);
+    },
+    [UPDATE_COMMENT_LOCALLY]: (state, comment) => {
+      const index = state.comments.findIndex((item) => item.id === comment.id);
+      state.comments[index] = comment;
     },
   },
 };

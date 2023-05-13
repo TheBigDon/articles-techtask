@@ -8,7 +8,7 @@ export default {
     },
   },
   methods: {
-    async deleteArticleHandler() {
+    async deleteArticle() {
       await this.$store.dispatch(DELETE_ARTICLE, {
         id: this.article.id,
       });
@@ -36,7 +36,7 @@ export default {
       variant="text"
       class="text-red-lighten-1"
       style="width: fit-content"
-      @click="deleteArticleHandler"
+      @click="deleteArticle"
     >
       Удалить
     </v-btn>
