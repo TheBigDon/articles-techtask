@@ -37,6 +37,7 @@ export default {
       class="text-red-lighten-1"
       style="width: fit-content"
       @click="deleteArticle"
+      :to="'/'"
     >
       Удалить
     </v-btn>

@@ -77,10 +77,12 @@ class CommentController {
             id: idComment,
             articleId: idArticle,
           },
+          returning: true,
+          plain: true,
         }
       );
 
-      res.status(200).json(comment);
+      res.status(200).json(comment[1]);
     } catch (err) {
       res.status(404).json({ message: err.message });
     }
