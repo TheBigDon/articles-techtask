@@ -19,7 +19,11 @@ export default {
 </script>
 
 <template>
-  <router-link to="/" style="display: block" class="text-decoration-none">
+  <router-link
+    style="display: block"
+    class="text-decoration-none"
+    :to="`/${this.$route.params.articleId}`"
+  >
     Назад
   </router-link>
   <CreateEditArticleForm v-if="article" :article="article" />
